@@ -1,6 +1,7 @@
 //Common
 require("dotenv").config();
 var cors = require("cors");
+const path = require("path");
 
 //Express
 const express = require("express");
@@ -48,7 +49,8 @@ app.use((req, res, next) => {
 });
 
 //expose public
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(bodyParser.json());
 app.use(cors());
